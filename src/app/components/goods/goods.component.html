@@ -1,0 +1,9 @@
+<div class="container">
+    <h2 class="text-center">Add New Good</h2>
+    <form #ref="ngForm" (ngSubmit)="addNewGood(ref)">
+        <input type="text" name="name" ngModel placeholder="Name" class="form-control mb-2" required>
+        <input type="number" name="price" ngModel placeholder="Price" class="form-control mb-2" required>
+        <input type="file" name="Image" ngModel required #image><br><br>
+        <input type="submit" value="Add" class="btn btn-primary" [disabled]="ref.invalid">
+    </form>
+</div>

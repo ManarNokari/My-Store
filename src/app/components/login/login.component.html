@@ -1,0 +1,14 @@
+<div class="body container">
+    <h2 class="text-center mb-3">Login</h2>
+    <form #ref="ngForm" (ngSubmit)="login(ref)">
+        <input ngModel name="email" #email="ngModel" type="email" class="form-control mb-2" placeholder="Email" required email>
+        <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is required</div>
+        <div class="alert alert-danger" *ngIf="email.invalid && email.errors?.email">Your input doesn't match email format</div>
+
+        <input ngModel name="password" #password="ngModel" type="password" class="form-control mb-2" placeholder="Password" required minlength="6">
+        <div class="alert alert-danger" *ngIf="password.touched && password.errors?.required">Password is required</div>
+        <div class="alert alert-danger" *ngIf="password.invalid && password.errors?.minlength">Password should be 6+ charachters</div>
+        
+        <button class="btn btn-primary" [disabled]="ref.invalid">Login</button>
+    </form>
+</div>

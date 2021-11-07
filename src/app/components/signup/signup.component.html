@@ -1,0 +1,26 @@
+<div class="body container">
+    <h2 class="text-center mb-3">Sign Up</h2>
+    <form #ref="ngForm" (ngSubmit)="signup(ref)">
+        <input ngModel name="name" #name="ngModel" type="text" class="form-control mb-2" placeholder="Your Name" required>
+        <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Name is required</div>
+
+        <input ngModel name="email" #email="ngModel" type="email" class="form-control mb-2" placeholder="Email" required email>
+        <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is required</div>
+        <div class="alert alert-danger" *ngIf="email.invalid && email.errors?.email">Your input doesn't match email format</div>
+
+        <input ngModel name="password" #password="ngModel" type="password" class="form-control mb-2" placeholder="Password" required minlength="6">
+        <div class="alert alert-danger" *ngIf="password.touched && password.errors?.required">Password is required</div>
+        <div class="alert alert-danger" *ngIf="password.invalid && password.errors?.minlength">Password should be 6+ charachters</div>
+
+        <input ngModel name="passwordConfirm" #passwordConfirm="ngModel" type="password" class="form-control mb-2" placeholder="Confirm Password" required>
+        <div class="alert alert-danger" *ngIf="passwordConfirm.invalid && passwordConfirm.touched">Passwrd is required</div>
+        <div class="alert alert-danger" *ngIf="passwordConfirm.value !== password.value && passwordConfirm.touched">Passwords are not equal</div>
+
+        <input ngModel name="address" #address="ngModel" type="text" class="form-control mb-2" placeholder="Address" required>
+        <div class="alert alert-danger" *ngIf="address.invalid && address.touched">Adress is required</div>
+        
+        <button class="btn btn-primary" [disabled]="ref.invalid || password.value !== passwordConfirm.value">Create Account</button>
+    </form>
+    <br>
+    <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+</div>
